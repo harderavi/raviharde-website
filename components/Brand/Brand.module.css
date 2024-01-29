@@ -1,0 +1,136 @@
+.branding {display: flex; gap: 10%;}
+.branding .br  {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10%;
+  height: 70px;
+  width: 60px;
+}
+.branding .br > div {
+  border-radius: 71% 0;
+  background-color: #FB3640;
+}
+.branding .br  > div:nth-child(1){
+  border-radius:  70%  0;
+  background-color: #A799B7;
+ 
+} 
+.branding .br  > div:nth-child(2){
+  border-radius: 0 100%  100% 0;
+  background-color: #FB3640;
+} 
+.branding .br  > div:nth-child(4){
+  border-radius: 0 70% 0 70%  ;
+  background-color: #FDCA40;
+} 
+.branding .br  > div:nth-child(3){
+  border-radius: 0 70% ;
+  background-color: #542E71;
+} 
+.branding .bh  {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10%;
+  height: 70px;
+  width: 60px;
+  transform: scale(1);
+}
+.branding .bh > div {
+  border-radius: 71% 0;
+  background-color: #542E71;
+  animation: leftflapDelay 10s cubic-bezier(.1,.01,.5,1) infinite;
+
+  animation-direction: alternate;
+}
+.branding .bh  > div:nth-child(1){
+  border-radius:  0 70%;
+  background-color: #542E71; 
+} 
+
+.branding .bh  > div:nth-child(2){
+  border-radius: 70% 0;
+  background-color: #FB3640;
+} 
+.branding .bh  > div:nth-child(3){
+  border-radius: 70% 0  ;
+  background-color: #FDCA40;
+
+} 
+.branding .bh  > div:nth-child(4){
+  border-radius: 0 70% ;
+  background-color: #A799B7;
+} 
+.branding .bh{
+  animation: bScaleDelay 10s  cubic-bezier(.1,.01,.5,1) infinite;
+  animation-direction: alternate;
+}
+.branding .bh:hover{
+  
+  animation: bScale .5s cubic-bezier(.1,.01,.5,1) infinite;
+  animation-direction: alternate;
+}
+
+.branding .bh  > div:nth-child(1), .branding .bh  > div:nth-child(3){
+  transform-origin: 100% 0%;
+}
+.branding .bh  > div:nth-child(2), .branding .bh  > div:nth-child(4){
+  transform-origin: 0% 100%;
+}
+
+.branding .bh:hover  > div:nth-child(1),
+.branding .bh:hover  > div:nth-child(2),
+.branding .bh:hover  > div:nth-child(3), 
+.branding .bh:hover  > div:nth-child(4)
+{
+  animation: leftflap .5s cubic-bezier(.1,.01,.5,1) infinite;
+  animation-direction: alternate;
+}
+
+@keyframes leftflap {
+  0% {
+      transform: rotateY(0deg);
+  }
+
+  100% {
+      transform: rotateY(60deg);
+  }
+}
+@keyframes leftflapDelay {
+  0% ,90%{
+      transform: rotateY(0deg);
+  }
+
+  96% {
+      transform: rotateY(60deg);
+  }
+  98% {
+    transform: rotateY(0deg);
+}
+100% {
+  transform: rotateY(60deg);
+}
+}
+@keyframes bScale {
+  0% {
+      transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes bScaleDelay {
+  0%,90% {
+      transform: scale(1);
+  }
+
+  96% {
+    transform: scale(1.1);
+  }
+  98% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}

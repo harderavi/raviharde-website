@@ -1,0 +1,39 @@
+.icon svg {height: 2em; width: 2em;     fill: hsla(0, 0%, 100%, 0.353);}
+
+.skillCard{
+    position: relative;
+}
+.skillCard::after{
+    content: '';
+    height: 10px; 
+    width: 1px;
+    position: absolute;
+    top: 0px; 
+    right: 0px;
+    background: #fff;
+}
+.skillCard::before{
+    content: '';
+    width: 10px;
+    height: 1px;
+    position: absolute;
+    top:   0px;
+    right: 0px;
+    background: #fff;
+}
+.blurEffect{
+    filter: blur(6px);
+    transform: scale(.8)!important;
+    opacity: .3;
+}
+.skillContainer:after {
+    content: '';
+    height: 200px;
+    list-style: square;
+    width: 200px;
+    background: #5900ffe8;
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    filter: blur(200px);
+}

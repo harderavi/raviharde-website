@@ -1,0 +1,12 @@
+.gridContainer {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 0px;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .gridItem {
+    aspect-ratio: 1;
+
+  }
