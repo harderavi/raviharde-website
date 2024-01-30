@@ -63,7 +63,7 @@ console.log(randomNumber);
         ))
     }
     </div>
-    <InfoTip buttonText={'i'} tipText={'The grid is populated with cells, each with a random background color, border radius, and opacit'}/>
+    <InfoTip buttonText={'i'} tipText={'The grid is filled with cells, each featuring a unique combination of randomly assigned background colors, border radius, and opacities achieved through HTML, CSS, and JS. This diverse styling not only enhances visual appeal but also introduces variability to each cell, contributing to an engaging and dynamic visual experience'}/>
     <button type='button' className='font-thin text-sm pt-5' onClick={()=>{ setCellsArray(Array.from({ length: numberCells*numberCells }, (_, index) => index + 1))}}><span className='border-2 rounded-full w-3 h-3 mr-2 inline-block'></span>Generate fresh artwork by clicking here.</button>
 </div>
     </div>

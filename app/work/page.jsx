@@ -64,13 +64,14 @@ const page = () => {
         />
       )}
        {!hasMoreImages && (
-        <p>No more images to load.</p>
+        <p className='text-center p-9'></p>
       )}
       {hasMoreImages && !isLoading && (
-
-        <button ref={loadMoreButtonRef} onClick={loadMoreImages} className="m-10 load-more-button">
-          Load More{hasMoreImages} 8
+        <div className='flex items-center justify-center '>
+        <button ref={loadMoreButtonRef} onClick={loadMoreImages} className="mt-30 mb-10 p-3 pt-1 pb-1  load-more-button rounded-lg  bg-white text-black">
+          Load More{hasMoreImages} 
         </button>
+        </div>
       )}
       </div>
   )

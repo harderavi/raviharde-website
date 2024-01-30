@@ -1,38 +1,68 @@
-import React, { useState } from 'react';
-import styles from './ImagesModal.module.css'
+// Importing React and other dependencies
 
-const ImageModal = ({ images, src, alt, onClose }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+import React, { useState, useRef } from 'react';
+import styles from './ImagesModal.module.css';
 
-    const handleNext = () => {
-      // Increment the index to display the next image
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    };
-  
-    const handlePrev = () => {
-      // Decrement the index to display the previous image
-      setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    };
-  
+const ImageModal = ({ images, onClose }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const handleClose = (e) => {
+    if (e.target.classList.contains(styles.imageModal)) {
+      onClose();
+    }
+  };
+
+  const handleImageClick = () => {
+    setIsZoomed(!isZoomed);
+  };
+
+  const containerRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+
+    const offsetX = clientX - left;
+    const offsetY = clientY - top;
+
+    const scrollX = (offsetX / width) * (containerRef.current.scrollWidth - containerRef.current.clientWidth);
+    const scrollY = (offsetY / height) * (containerRef.current.scrollHeight - containerRef.current.clientHeight);
+
+    containerRef.current.scrollLeft = scrollX;
+    containerRef.current.scrollTop = scrollY;
+  };
+
   return (
-    <div className={`${styles.imageModal} p-14
-    
-    
-    
-    
-    
-    
-    `}>
+    <div
+      className={`${styles.imageModal} ${isZoomed ? styles.zoomed : ''} p-14`}
+      onClick={handleClose}
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+    >
       <span className={styles.modalClose} onClick={onClose}>
         &times;
       </span>
-      <img src={images[currentIndex].src} alt={images[currentIndex].alt} />
+      <img
+        src={images[currentIndex].src}
+        alt={images[currentIndex].alt}
+        className={`${isZoomed ? styles.zoomed : ''}`}
+        onClick={handleImageClick}
+      />
       <div className={styles.modalArrows}>
         <span className={styles.modalArrow} onClick={handlePrev}>
-          &#8249; Prev
+          &#8249;
         </span>
         <span className={styles.modalArrow} onClick={handleNext}>
-          Next &#8250;
+          &#8250;
         </span>
       </div>
     </div>

@@ -12,11 +12,11 @@ const ImageGallery = ({images, onLoadMore,onClick}) => {
     },[inView, onLoadMore])
 
   return (
-    <div className={styles.imageGallery}>
+    <div className={`${styles.imageGallery} grid  grid-cols-1 p-5 sm:p-0 sm:grid-cols-3 gap-10 mb-10`}>
       {images.map((image, i)=>(
         <img
         key={i}
-        src={image.src}
+        src={image.src} 
         alt={image.imageDescription}
         onClick={() => onClick(image)}
         loading="lazy"
@@ -25,7 +25,7 @@ const ImageGallery = ({images, onLoadMore,onClick}) => {
 
       }
       
-    </div>
+    </div> 
   )
 }
 

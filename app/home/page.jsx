@@ -4,6 +4,7 @@ import MySkills from '@/components/MySkills/MySkills'
 import React from 'react'
 
 const home = () => {
+  
   return (
     <>
       <div className=' max-w-screen-xl m-auto	 flex gap-10 max-md:flex-col'>

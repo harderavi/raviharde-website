@@ -24,6 +24,7 @@ export const ThemeModeProvider = ({children}) =>{
     // useEffect to update the body class when the themeMode change
     useEffect(()=>{
         document.querySelector('html').classList.toggle('dark', themeMode)
+        document.querySelector('body').classList.toggle('dark', themeMode)
     },[themeMode])
 
     return (

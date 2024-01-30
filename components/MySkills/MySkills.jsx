@@ -4,10 +4,14 @@ import { FaHtml5, FaCss3, FaFigma, FaReact, FaNodeJs, FaGitAlt } from "react-ico
 import { SiJavascript, SiTypescript, SiRedux, SiTailwindcss, SiMaterialdesign, SiExpress, SiAdobexd, SiAdobephotoshop, SiAdobeillustrator, SiVisualstudio } from "react-icons/si";
 import style from "./MySkills.module.css"
 import { skills } from "@/lib/data"
-
+import { useThemeMode } from '../../context/ThemeModeContext'
 const MySkills = () => {
     const [cardRotation, setCardRotation] = useState({ x: 0, y: 0 });
+    const { themeMode } = useThemeMode();
 
+    const cardGrid ='grid grid-cols-4  md:grid-cols-8 gap-0 ';
+    const cardStyles ='dark:bg-[#161922] bg-white  aspect-square  flex flex-col justify-between  font-thin items-stretch p-2 sm:p-5 border ml-[-1px] border-gray-200 dark:border-gray-700 transition  duration-10';
+    const cardTextStyles ='text-sm	sm:text-base font-medium	dark:font-thin   text-black dark:text-white';
     const iconMapping = {
         FaHtml5,
         FaCss3,
@@ -60,26 +64,33 @@ const MySkills = () => {
     const uniqueCategories = [...new Set(skills.map(skill => skill.category))];
     return (
         <div className={`max-w-screen-xl m-auto relative ${style.skillContainer}`}>
-            <h1 className='text-3xl font-normal'>Skills</h1>
-            <div className='pt-5 pb-10 flex gap-6'>
+            <h1 className='text-3xl font-normal max-sm:mb-8 max-sm:mt-8'>Skills</h1>
+            <div className='pt-5 pb-10 flex flex-wrap	gap-6 max-sm:hidden '>
                 {uniqueCategories.map(category => (
                     <span className='pt-2 pb-2 pl-5 pr-5 text-xs text-gray-600 dark:hover:text-white border border-gray-700 rounded-full inline-block cursor-pointer' onMouseEnter={() => filterHandleMouseEnter(category)} onMouseOut={filterHandleMouseOut}>{category}</span>
                 ))
 
                 }
             </div>
-            <div className='grid grid-cols-8 gap-0 '>
+            <div className={`${cardGrid}`}>
                 {skills.map((skill, index) => (
-                    <div className={` ${style.skillCard} ${filterCategory && filterCategory !== skill.category ? style.blurEffect : ''}
-             bg-[#161922] dark:bg-transparent  aspect-square  flex flex-col justify-between  font-thin items-stretch p-5 border ml-[-1px]  border-gray-700 transition  duration-10`
+                    <div className={` card ${cardStyles} ${style.skillCard} ${filterCategory && filterCategory !== skill.category ? style.blurEffect : ''}`
                     }
                         style={{ transform: `rotateX(${cardRotation.x}deg) rotateY(${cardRotation.y}deg)` }}
                         key={index} onMouseMove={handleMouseMove} onMouseOut={handleMouseOut}>
-                        <div className={`icon ${style.icon} dark:*:fill-red *:pb-10`}>
+                           { themeMode  ? (
+                        <div className={`icon ${style.icon}`}>
                             {typeof skill.icon === 'string' && iconMapping[skill.icon] && React.createElement(iconMapping[skill.icon])}
                             {React.isValidElement(skill.icon) && skill.icon}
                         </div>
-                        <p className='font-thin  text-gray-200'>{skill.name}</p>
+                           ):(
+                        <div className={` ${style.iconRed}`}>
+                            {typeof skill.icon === 'string' && iconMapping[skill.icon] && React.createElement(iconMapping[skill.icon])}
+                            {React.isValidElement(skill.icon) && skill.icon}
+                        </div>
+                )
+                           }
+                        <p className={`${cardTextStyles}`}>{skill.name}</p>
                     </div>
                 ))
 
